@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" class="box-border">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" h />
+    <h4></h4>
+    <script
+      type="module"
+      src="https://raw.esm.sh/code-mirror-web-component@0.0.20/dist/code-mirror.js"
+    ></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          screens: {
+            custombp: { raw: "(max-height: 1234px),(min-width:920px)" },
+          },
+          extend: {
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+              fira: ["Fira Code", "monospace"],
+              source: ['"Source Sans 3"', "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="reset.css" />
+    <title>SQLite Explorer</title>
+  </head>
+  <body id="body" class="w-screen h-screen p-3 font-source">
+    <div
+      id="root-container"
+      class="flex flex-col w-screen h-screen border-4 border-red-400 gap-y-1"
+    >
+      <header id="header" class="border-2 border-black rounded-[3px]">
+        <h1 class="relative p-5 text-3xl font-semibold uppercase">
+          SQLite Explorer
+        </h1>
+      </header>
+      <main id="sidebar-layout" class="flex h-full gap-1 row">
+        <div id="sidebar" class="border-2 border-black w-fit rounded-[3px]">
+          <div id="table-list" class="flex flex-col px-3 py-2">
+            <div
+              id="table-list-item1"
+              class="inline-flex items-center justify-start h-8 px-2 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-200"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-5 h-5 mr-2 lucide lucide-table-2"
+              >
+                <path
+                  d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"
+                ></path>
+              </svg>
+              <div>planetary-physics</div>
+            </div>
+            <div
+              id="table-list-item2"
+              class="inline-flex items-center justify-start h-8 px-2 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-200"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-5 h-5 mr-2 lucide lucide-table-2"
+              >
+                <path
+                  d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"
+                ></path>
+              </svg>
+              <div>twop-interstellar-iron</div>
+            </div>
+            <div
+              id="table-list-item3"
+              class="inline-flex items-center justify-start h-8 px-2 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-200"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-5 h-5 mr-2 lucide lucide-table-2"
+              >
+                <path
+                  d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"
+                ></path>
+              </svg>
+              <div>radiant-a</div>
+            </div>
+          </div>
+        </div>
+        <div
+          id="main-container"
+          class="flex flex-col flex-grow flex-shrink gap-y-1"
+        >
+          <div
+            id="editor-section"
+            class="flex flex-col border-2 border-black rounded-[3px] min-h-56"
+          >
+            <code-mirror
+              id="editor"
+              language="sql"
+              code="SELECT * FROM sqlite;"
+              class="flex-grow overflow-auto border-b-2 border-black"
+            ></code-mirror>
+
+            <div
+              id="button-container"
+              class="flex items-center gap-2 p-2 h-fit"
+            >
+              <button
+                id="run-btn"
+                class="flex gap-1 items-center text-base capitalize border-2 border-black px-1 rounded-[0.2rem]"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-4 h-4 svg lucide play"
+                >
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+                run
+              </button>
+              <button
+                id="json-btn"
+                class="text-base capitalize border-2 border-black px-1 rounded-[0.2rem]"
+              >
+                Download JSON
+              </button>
+              <button
+                id="csv-btn"
+                class="text-base capitalize border-2 border-black px-1 rounded-[0.2rem]"
+              >
+                Download CSV
+              </button>
+            </div>
+          </div>
+          <div
+            id="table-section"
+            class="border-2 border-black rounded-[3px] h-full w-full"
+          >
+            <div id="table-root-container flex flex-col">
+              <div class="overflow-x-auto">
+                <div class="inline-block align-middle">
+                  <div id="results-table" class="overflow-hidden">
+                    <table
+                      class="divide-y divide-gray-200 dark:divide-gray-700"
+                    >
+                      <thead>
+                        <tr>
+                          <th
+                            scope="col"
+                            class="px-6 py-3 text-xs font-medium text-gray-500 uppercase text-start"
+                          >
+                            Name
+                          </th>
+                          <th
+                            scope="col"
+                            class="px-6 py-3 text-xs font-medium text-gray-500 uppercase text-start"
+                          >
+                            Title
+                          </th>
+                          <th
+                            scope="col"
+                            class="px-6 py-3 text-xs font-medium text-gray-500 uppercase text-start"
+                          >
+                            Age
+                          </th>
+                          <th
+                            scope="col"
+                            class="px-6 py-3 text-xs font-medium text-gray-500 uppercase text-start"
+                          >
+                            Email
+                          </th>
+                          <th
+                            scope="col"
+                            class="px-6 py-3 text-xs font-medium text-gray-500 uppercase text-start"
+                          >
+                            Address
+                          </th>
+                          <th
+                            scope="col"
+                            class="px-6 py-3 text-xs font-medium text-gray-500 uppercase text-end"
+                          >
+                            Action
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        class="divide-y divide-gray-200 dark:divide-gray-700"
+                      >
+                        <tr>
+                          <td
+                            class="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap dark:text-gray-200"
+                          >
+                            John Brown
+                          </td>
+                          <td
+                            class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-gray-200"
+                          >
+                            Regional Paradigm Technician
+                          </td>
+                          <td
+                            class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-gray-200"
+                          >
+                            john@site.com
+                          </td>
+                          <td
+                            class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-gray-200"
+                          >
+                            45
+                          </td>
+                          <td
+                            class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-gray-200"
+                          >
+                            New York No. 1 Lake Park
+                          </td>
+                          <td
+                            class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end"
+                          >
+                            <button
+                              type="button"
+                              class="inline-flex items-center text-sm font-semibold text-blue-600 border border-transparent rounded-lg gap-x-2 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400"
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            class="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap dark:text-gray-200"
+                          >
+                            Jim Green
+                          </td>
+                          <td
+                            class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-gray-200"
+                          >
+                            Forward Response Developer
+                          </td>
+                          <td
+                            class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-gray-200"
+                          >
+                            jim@site.com
+                          </td>
+                          <td
+                            class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-gray-200"
+                          >
+                            27
+                          </td>
+                          <td
+                            class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap dark:text-gray-200"
+                          >
+                            London No. 1 Lake Park
+                          </td>
+                          <td
+                            class="px-6 py-4 text-sm font-medium whitespace-nowrap text-end"
+                          >
+                            <button
+                              type="button"
+                              class="inline-flex items-center text-sm font-semibold text-blue-600 border border-transparent rounded-lg gap-x-2 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400"
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

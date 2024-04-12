@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body id="body" class="w-screen h-screen p-10 font-source">
+    <div
+      id="root-container"
+      class="flex flex-col h-full mx-auto border-4 border-red-400 gap-y-1"
+    >
+      <header id="header" class="border-2 border-black rounded-[3px]">
+        <h1 class="relative p-5 text-3xl font-semibold uppercase">
+          SQLite Explorer
+        </h1>
+      </header>
+      <main id="sidebar-layout" class="flex h-full gap-1 row">
+        <div id="sidebar" class="border-2 border-black w-fit rounded-[3px]">
+          <div id="table-list" class="flex flex-col px-3 py-2">
+            <div
+              id="table-list-item1"
+              class="inline-flex items-center justify-start h-8 px-2 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-200"
+            >
+              <div>planetary-physics</div>
+            </div>
+            <div
+              id="table-list-item2"
+              class="inline-flex items-center justify-start h-8 px-2 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-200"
+            >
+              <div>twop-interstellar-iron</div>
+            </div>
+            <div
+              id="table-list-item3"
+              class="inline-flex items-center justify-start h-8 px-2 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-200"
+            >
+              <div>radiant-a</div>
+            </div>
+          </div>
+        </div>
+        <div
+          id="main-container"
+          class="flex flex-col flex-grow flex-shrink gap-1"
+        >
+          <div
+            id="editor-section"
+            class="flex flex-col border-2 border-black rounded-[3px] min-h-56"
+          >
+            <code-mirror
+              id="editor"
+              language="sql"
+              code="SELECT * FROM sqlite;"
+              class="flex-grow h-12 overflow-auto border-b-2 border-black"
+            ></code-mirror>
+
+            <div id="button-container" class="flex items-center gap-2 p-2">
+              <button
+                id="run-btn"
+                class="flex gap-1 items-center text-base capitalize border-2 border-black px-1 rounded-[0.2rem]"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-4 h-4 svg lucide play"
+                >
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+                run
+              </button>
+              <button
+                id="json-btn"
+                class="text-base capitalize border-2 border-black px-1 rounded-[0.2rem]"
+              >
+                Download JSON
+              </button>
+              <button
+                id="csv-btn"
+                class="text-base capitalize border-2 border-black px-1 rounded-[0.2rem]"
+              >
+                Download CSV
+              </button>
+            </div>
+          </div>
+          <div
+            id="table-section"
+            class="border-2 border-black rounded-[3px] h-full w-full overflow-hidden"
+          ></div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

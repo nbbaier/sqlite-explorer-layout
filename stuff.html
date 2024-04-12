@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Stuff</title>
+  </head>
+  <body class="flex flex-col w-screen h-screen p-3">
+    ¯
+    <div
+      id="root-flex-container"
+      class="flex flex-col h-full gap-1 outline-dotted outline-red"
+    >
+      <header id="header" class="border-2 border-black rounded-[3px]">
+        <h1 class="relative p-4 text-3xl font-semibold uppercase">
+          SQLite Explorer
+        </h1>
+      </header>
+      <div
+        id="main"
+        class="flex flex-row h-full gap-1 outline-4 outline-offset-1 outline-red-400 max-h-[calc(100vh-6rem)]"
+      >
+        <aside id="sidebar" class="border-2 border-black w-fit rounded-[3px]">
+          <div id="table-list" class="flex flex-col px-3 py-2">
+            <div
+              id="table-list-item1"
+              class="inline-flex items-center justify-start h-8 px-2 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-200"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-5 h-5 mr-2 lucide lucide-table-2"
+              >
+                <path
+                  d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"
+                ></path>
+              </svg>
+              <div>planetary-physics</div>
+            </div>
+            <div
+              id="table-list-item2"
+              class="inline-flex items-center justify-start h-8 px-2 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-200"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-5 h-5 mr-2 lucide lucide-table-2"
+              >
+                <path
+                  d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"
+                ></path>
+              </svg>
+              <div>twop-interstellar-iron</div>
+            </div>
+            <div
+              id="table-list-item3"
+              class="inline-flex items-center justify-start h-8 px-2 rounded-md cursor-pointer whitespace-nowrap hover:bg-slate-200"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-5 h-5 mr-2 lucide lucide-table-2"
+              >
+                <path
+                  d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"
+                ></path>
+              </svg>
+              <div>radiant-a</div>
+            </div>
+          </div>
+        </aside>
+        <div
+          id="main-container"
+          class="flex flex-col flex-grow flex-shrink gap-y-1"
+        >
+          <div
+            id="editor-section"
+            class="flex flex-col border-2 border-black rounded-[3px] min-h-56"
+          >
+            <code-mirror
+              id="editor"
+              language="sql"
+              code="SELECT * FROM sqlite;"
+              class="flex-grow h-12 overflow-auto border-b-2 border-black"
+            ></code-mirror>
+
+            <div id="button-container" class="flex items-center gap-2 p-2">
+              <button
+                id="run-btn"
+                class="flex gap-1 items-center text-base capitalize border-2 border-black px-1 rounded-[0.2rem]"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-4 h-4 svg lucide play"
+                >
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+                <span class="inline">run</span>
+              </button>
+              <button
+                id="json-btn"
+                class="text-base capitalize border-2 border-black px-1 rounded-[0.2rem]"
+              >
+                Download JSON
+              </button>
+              <button
+                id="csv-btn"
+                class="text-base capitalize border-2 border-black px-1 rounded-[0.2rem]"
+              >
+                <span class="">Download CSV</span>
+              </button>
+            </div>
+          </div>
+
+          <div
+            id="table-section"
+            class="rounded-[3px] flex-1 border-2 border-black overflow-auto"
+          >
+            <table class="table-fixed">
+              <thead>
+                <tr class="sticky top-0 bg-gray-200">
+                  <th
+                    class="sticky top-0 px-4 py-2 text-left whitespace-nowrap"
+                  >
+                    col 1
+                  </th>
+                  <th
+                    class="sticky top-0 px-4 py-2 text-left whitespace-nowrap"
+                  >
+                    col 2
+                  </th>
+                  <th
+                    class="sticky top-0 px-4 py-2 text-left whitespace-nowrap"
+                  >
+                    col 3
+                  </th>
+                  <th
+                    class="sticky top-0 px-4 py-2 text-left whitespace-nowrap"
+                  >
+                    col 4
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="px-4 py-1 text-left">col 1</td>
+                  <td class="px-4 py-1 text-left">col 2</td>
+                  <td class="px-4 py-1 text-left">col 3</td>
+                  <td class="px-4 py-1 text-left">col 4</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
